@@ -1,13 +1,15 @@
+@import './utils/colors.css';
+
 .App {
   text-align: center;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: var(--color-background-primary);
 }
 
 .App-header {
-  background-color: #0078d4;
+  background-color: var(--color-primary);
   padding: 2rem;
-  color: white;
+  color: var(--color-text-header-primary);
   margin-bottom: 2rem;
 }
 

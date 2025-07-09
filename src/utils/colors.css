@@ -1,0 +1,14 @@
+/**
+ * CSS Custom Properties - Color Variables
+ * Generated from colors.ts constants to ensure consistency
+ */
+:root {
+  /* Primary Colors */
+  --color-primary: #0078d4;
+
+  /* Background Colors */
+  --color-background-primary: #ffffff;
+
+  /* Text Colors */
+  --color-text-header-primary: #ffffff;
+}
