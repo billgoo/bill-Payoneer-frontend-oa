@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import { initializeIcons } from '@fluentui/react';
+import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import './App.css';
+
+// Initialize Fluent UI icons
+initializeIcons();
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Account Registration Form</h1>
+        <p>Complete all steps to create your account</p>
       </header>
+      <main>
+        {/* TODO: billgu: implement the registration form */}
+        <RegistrationForm />
+      </main>
     </div>
   );
 }
