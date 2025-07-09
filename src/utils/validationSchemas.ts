@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { isValidCountry } from '../constants/countries';
+import { GENDER_OPTIONS } from '../constants/gender';
 
 // Basic Information Step Schema
 export const basicInfoSchema = yup.object().shape({
@@ -31,7 +32,7 @@ export const detailsSchema = yup.object().shape({
   gender: yup
     .string()
     .required('Gender is required')
-    .oneOf(['male', 'female', 'other'], 'Please select a valid gender'),
+    .oneOf(GENDER_OPTIONS.map(g => g.key), 'Please select a valid gender'),
 });
 
 // Account Step Schema

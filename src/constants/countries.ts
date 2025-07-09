@@ -1,32 +1,23 @@
 /**
  * Available Countries - List of countries available for selection
  * This file contains all the country options that users can select from
- * in the registration form using the countries-list library for comprehensive data.
+ * in the registration form using the country-list library for comprehensive data.
  */
+
+import * as countryList from 'country-list';
 
 export interface CountryOption {
   key: string;
   text: string;
 }
 
-// Define the country data type from countries-list
-interface CountryData {
-  name: string;
-}
-
-// Import countries data using require for better compatibility
-const countriesData = require('countries-list');
-const countries = countriesData.countries as Record<string, CountryData>;
-
-// Generate comprehensive country list from countries-list library
-export const COUNTRIES: CountryOption[] = Object.entries(countries)
-  .map(([code, country]: [string, any]) => {
-    const countryData = country as CountryData;
-    return {
-      key: code.toLowerCase(),
-      text: countryData.name,
-    };
-  })
+// Generate comprehensive country list from country-list library
+export const COUNTRIES: CountryOption[] = countryList
+  .getData()
+  .map((country: any) => ({
+    key: country.code.toLowerCase(),
+    text: country.name,
+  }))
   .sort((a, b) => a.text.localeCompare(b.text)); // Sort alphabetically by name
 
 // Helper function to validate if a country is valid
