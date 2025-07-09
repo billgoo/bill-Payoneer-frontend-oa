@@ -4,7 +4,6 @@ import { Stack, Icon } from "@fluentui/react";
 import { FormData, StepProps } from "../../../utils/types";
 import { COUNTRIES as countries } from "../../../constants/countries";
 import { GENDER_OPTIONS as genderOptions } from "../../../constants/gender";
-import { STEPS } from "../RegistrationForm";
 
 const ConfirmationStep: React.FC<StepProps> = (stepInfo) => {
   const { watch } = useFormContext<FormData>();
@@ -20,67 +19,127 @@ const ConfirmationStep: React.FC<StepProps> = (stepInfo) => {
   };
 
   const formatDate = (date: Date | null) => {
-    if (!date) return "";
-    return date.toLocaleDateString();
+    if (!date) return "Not provided";
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  const getAvatarUrl = () => {
+    if (formData.avatar) {
+      return URL.createObjectURL(formData.avatar);
+    }
+    return undefined;
   };
 
   return (
     <div className="form-step">
-      <Stack tokens={{ childrenGap: 20 }}>
-        <h2>{stepInfo.title}</h2>
-        <p>{stepInfo.description}</p>
+      <Stack tokens={{ childrenGap: 30 }}>
+        <div className="confirmation-header">
+          <Icon iconName="SkypeCheck" className="confirmation-check-icon" />
+          <h2>{stepInfo.title}</h2>
+          <p className="confirmation-subtitle">{stepInfo.description}</p>
+        </div>
 
-        <div className="confirmation-section">
-          <h3>{STEPS[0].title}</h3>
-          <div className="confirmation-item">
-            <span className="confirmation-label">Name:</span>
-            <span className="confirmation-value">
+        {/* Profile Summary Card */}
+        <div className="profile-summary-card">
+          <div className="profile-avatar-section">
+            {formData.avatar ? (
+              <img
+                src={getAvatarUrl()}
+                alt="Profile"
+                className="profile-avatar"
+              />
+            ) : (
+              <div className="profile-avatar-placeholder">
+                <Icon iconName="Contact" className="avatar-placeholder-icon" />
+              </div>
+            )}
+          </div>
+          <div className="profile-info">
+            <h3 className="profile-name">
               {formData.firstName} {formData.lastName}
-            </span>
-          </div>
-          <div className="confirmation-item">
-            <span className="confirmation-label">Date of Birth:</span>
-            <span className="confirmation-value">
-              {formatDate(formData.dateOfBirth)}
-            </span>
-          </div>
-        </div>
-
-        <div className="confirmation-section">
-          <h3>{STEPS[1].title}</h3>
-          <div className="confirmation-item">
-            <span className="confirmation-label">Country:</span>
-            <span className="confirmation-value">
+            </h3>
+            <p className="profile-details">
+              {getGenderName(formData.gender)} •{" "}
               {getCountryName(formData.country)}
-            </span>
+            </p>
+            <p className="profile-birth">
+              Born {formatDate(formData.dateOfBirth)}
+            </p>
           </div>
-          <div className="confirmation-item">
-            <span className="confirmation-label">Gender:</span>
-            <span className="confirmation-value">
-              {getGenderName(formData.gender)}
-            </span>
-          </div>
-          {formData.avatar && (
-            <div className="confirmation-item">
-              <span className="confirmation-label">Profile Photo:</span>
-              <span className="confirmation-value">
-                <Icon iconName="CheckMark" className="success-icon-small" />
-                Uploaded
-              </span>
-            </div>
-          )}
         </div>
 
-        <div className="confirmation-section">
-          <h3>{STEPS[2].title}</h3>
-          <div className="confirmation-item">
-            <span className="confirmation-label">Email:</span>
-            <span className="confirmation-value">{formData.email}</span>
+        {/* Confirmation Sections */}
+        <div className="confirmation-grid">
+          <div className="confirmation-card">
+            <div className="card-header">
+              <Icon iconName="Contact" className="card-icon" />
+              <h3>Personal Information</h3>
+            </div>
+            <div className="card-content">
+              <div className="info-row">
+                <span className="info-label">Full Name</span>
+                <span className="info-value">
+                  {formData.firstName} {formData.lastName}
+                </span>
+              </div>
+              <div className="info-row">
+                <span className="info-label">Date of Birth</span>
+                <span className="info-value">
+                  {formatDate(formData.dateOfBirth)}
+                </span>
+              </div>
+              <div className="info-row">
+                <span className="info-label">Gender</span>
+                <span className="info-value">
+                  {getGenderName(formData.gender)}
+                </span>
+              </div>
+              <div className="info-row">
+                <span className="info-label">Country</span>
+                <span className="info-value">
+                  {getCountryName(formData.country)}
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="confirmation-item">
-            <span className="confirmation-label">Password:</span>
-            <span className="confirmation-value">••••••••</span>
+
+          <div className="confirmation-card">
+            <div className="card-header">
+              <Icon iconName="Mail" className="card-icon" />
+              <h3>Account Details</h3>
+            </div>
+            <div className="card-content">
+              <div className="info-row">
+                <span className="info-label">Email Address</span>
+                <span className="info-value">{formData.email}</span>
+              </div>
+              <div className="info-row">
+                <span className="info-label">Password</span>
+                <span className="info-value password-mask">••••••••</span>
+              </div>
+              {formData.avatar && (
+                <div className="info-row">
+                  <span className="info-label">Profile Photo</span>
+                  <span className="info-value status-success">
+                    <Icon iconName="CheckMark" className="success-indicator" />
+                    Uploaded
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
+        </div>
+
+        <div className="confirmation-notice">
+          <Icon iconName="Info" className="notice-icon" />
+          <p>
+            Please review your information carefully. You can go back to make
+            changes or proceed to complete your registration.
+          </p>
         </div>
       </Stack>
     </div>

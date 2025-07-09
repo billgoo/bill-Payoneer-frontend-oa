@@ -1,6 +1,5 @@
-@import '../../utils/colors.css';
+@import "../../constants/colors.css";
 
-/* RegistrationForm.css */
 .registration-form-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -10,6 +9,7 @@
   background-color: var(--color-background-secondary);
 }
 
+/* -------- Step bar --------*/
 .step-indicator {
   display: flex;
   justify-content: space-between;
@@ -18,7 +18,7 @@
 }
 
 .step-indicator::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 20px;
   left: 0;
@@ -65,6 +65,41 @@
   color: var(--color-text-tertiary);
 }
 
+.step-number.clickable,
+.step-title.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.step-number.clickable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 120, 212, 0.3);
+}
+
+.step-title.clickable:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* Add a subtle indicator that steps are clickable on confirmation */
+.step-item:has(.clickable)::after {
+  content: "Click to edit";
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--color-text-tertiary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.step-item:has(.clickable):hover::after {
+  opacity: 1;
+}
+
 .step-title {
   font-size: 0.875rem;
   font-weight: 500;
@@ -83,11 +118,7 @@
 .step-title.inactive {
   color: var(--color-text-tertiary);
 }
-
-.form-step {
-  min-height: 400px;
-  padding: 2rem 0;
-}
+/* -------- Step bar --------*/
 
 .form-actions {
   display: flex;
@@ -98,14 +129,21 @@
   border-top: 1px solid var(--color-border-default);
 }
 
+/* -------- Form step --------*/
+.form-step {
+  min-height: 400px;
+  padding: 2rem 0;
+}
+
 .form-field-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
+/* -------- Form step --------*/
 
-.form-field-full {
+.form-field-date {
   grid-column: 1 / -1;
 }
 
@@ -168,38 +206,288 @@
   display: none;
 }
 
-.confirmation-section {
-  background-color: var(--color-background-secondary);
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
+/* Dropdown styling for centering text */
+.ms-Dropdown-title {
+  text-align: center !important;
 }
 
-.confirmation-section h3 {
-  margin: 0 0 1rem 0;
-  color: var(--color-text-primary);
+/* Country search dropdown styles */
+.country-input-container {
+  position: relative;
+}
+
+.country-dropdown {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.country-option {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f2f1;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.country-option:hover {
+  background-color: #f3f2f1;
+}
+
+.country-option.selected {
+  background-color: #f3f2f1;
+}
+
+/* Password field reveal button styling */
+.ms-TextField-wrapper .ms-TextField-suffix {
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.ms-TextField .ms-Button--icon {
+  height: 32px !important;
+  width: 32px !important;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Ensure password reveal button stays visible */
+.ms-TextField-fieldGroup .ms-Button {
+  pointer-events: auto !important;
+  z-index: 10 !important;
+}
+
+/* Enhanced Confirmation Styles */
+.confirmation-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.confirmation-check-icon {
+  font-size: 3rem;
+  color: var(--color-success);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.confirmation-subtitle {
+  color: var(--color-text-secondary);
   font-size: 1.1rem;
+  margin: 0;
 }
 
-.confirmation-item {
+.profile-summary-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0078d4 100%);
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.profile-avatar-section {
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.profile-avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar-placeholder-icon {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.profile-details {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.profile-birth {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.confirmation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.confirmation-card {
+  background-color: var(--color-background-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border-default);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.confirmation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-border-default);
 }
 
-.confirmation-item:last-child {
+.card-icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.info-row:last-child {
   border-bottom: none;
 }
 
-.confirmation-label {
+.info-label {
   font-weight: 500;
   color: var(--color-text-secondary);
+  font-size: 0.9rem;
 }
 
-.confirmation-value {
+.info-value {
   color: var(--color-text-primary);
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}
+
+.password-mask {
+  font-family: monospace;
+  letter-spacing: 2px;
+  color: var(--color-text-tertiary);
+}
+
+.status-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-success) !important;
+}
+
+.success-indicator {
+  font-size: 0.9rem;
+}
+
+.confirmation-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background-color: var(--color-background-tertiary);
+  border-radius: 8px;
+  border-left: 4px solid var(--color-primary);
+}
+
+.notice-icon {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.confirmation-notice p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Custom dropdown title styles */
+.dropdown-title-container {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+/* Responsive design for confirmation */
+@media (max-width: 768px) {
+  .confirmation-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .profile-summary-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .profile-info {
+    text-align: center;
+  }
+
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .info-value {
+    text-align: left;
+    max-width: 100%;
+  }
 }
 
 .success-message {
@@ -211,11 +499,6 @@
   font-size: 4rem;
   color: var(--color-success);
   margin-bottom: 1rem;
-}
-
-.success-icon-small {
-  color: var(--color-success);
-  margin-right: 0.5rem;
 }
 
 .success-title {
@@ -259,27 +542,27 @@
     margin: 1rem;
     padding: 1rem;
   }
-  
+
   .form-field-group {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .step-indicator {
     flex-wrap: wrap;
     gap: 1rem;
   }
-  
+
   .step-item {
     flex: 1;
     min-width: 120px;
   }
-  
+
   .form-actions {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .avatar-upload-container {
     flex-direction: column;
     text-align: center;
@@ -290,13 +573,13 @@
   .step-indicator::before {
     display: none;
   }
-  
+
   .step-number {
     width: 30px;
     height: 30px;
     font-size: 0.875rem;
   }
-  
+
   .step-title {
     font-size: 0.75rem;
   }

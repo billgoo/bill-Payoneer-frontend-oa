@@ -185,11 +185,6 @@ const DetailsStep: React.FC<StepProps> = (stepInfo) => {
             required
             errorMessage={stepInfo.errors.country}
             data-testid={FormFieldProps.country.dataTestId}
-            styles={{
-              field: {
-                textAlign: "center",
-              },
-            }}
           />
 
           {showDropdown && filteredCountries.length > 0 && (
@@ -232,6 +227,17 @@ const DetailsStep: React.FC<StepProps> = (stepInfo) => {
           required
           errorMessage={stepInfo.errors.gender}
           data-testid={FormFieldProps.gender.dataTestId}
+          onRenderTitle={(options) => {
+            return (
+              <div className="dropdown-title-container">
+                <span>
+                  {options && options.length > 0
+                    ? options[0].text
+                    : FormFieldProps.gender.placeholder}
+                </span>
+              </div>
+            );
+          }}
         />
 
         {/* Avatar Upload */}
