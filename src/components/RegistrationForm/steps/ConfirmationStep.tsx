@@ -7,6 +7,7 @@ import { GENDER_OPTIONS as genderOptions } from "../../../constants/gender";
 
 const ConfirmationStep: React.FC<StepProps> = (stepInfo) => {
   const { watch } = useFormContext<FormData>();
+  const [avatarUrl, setAvatarUrl] = React.useState<string | undefined>(undefined);
 
   const formData = watch();
 
@@ -27,12 +28,17 @@ const ConfirmationStep: React.FC<StepProps> = (stepInfo) => {
     });
   };
 
-  const getAvatarUrl = () => {
+  React.useEffect(() => {
     if (formData.avatar) {
-      return URL.createObjectURL(formData.avatar);
+      const objectUrl = URL.createObjectURL(formData.avatar);
+      setAvatarUrl(objectUrl);
+      return () => {
+        URL.revokeObjectURL(objectUrl);
+      };
+    } else {
+      setAvatarUrl(undefined);
     }
-    return undefined;
-  };
+  }, [formData.avatar]);
 
   return (
     <div className="form-step">
@@ -48,7 +54,7 @@ const ConfirmationStep: React.FC<StepProps> = (stepInfo) => {
           <div className="profile-avatar-section">
             {formData.avatar ? (
               <img
-                src={getAvatarUrl()}
+                src={avatarUrl}
                 alt="Profile"
                 className="profile-avatar"
               />

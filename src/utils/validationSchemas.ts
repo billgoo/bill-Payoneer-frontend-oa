@@ -17,7 +17,7 @@ export const basicInfoSchema = yup.object().shape({
   dateOfBirth: yup
     .date()
     .required('Date of birth is required')
-    .min(new Date(new Date().getFullYear() - 200, 0, 1), 'No person could live more than 200 years in reality currently')
+    .min(new Date(new Date().setFullYear(new Date().getFullYear() - 200)), 'No person could live more than 200 years in reality currently')
     .max(new Date(), 'Date of birth cannot be in the future'),
 });
 

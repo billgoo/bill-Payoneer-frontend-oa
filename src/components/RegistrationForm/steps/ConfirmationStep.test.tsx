@@ -10,6 +10,8 @@ initializeIcons();
 
 // Mock URL.createObjectURL
 global.URL.createObjectURL = jest.fn(() => "mock-url");
+// Mock URL.revokeObjectURL
+global.URL.revokeObjectURL = jest.fn();
 
 const TestWrapper: React.FC<{
   children: React.ReactNode;

@@ -269,7 +269,7 @@ const DetailsStep: React.FC<StepProps> = (stepInfo) => {
             <input
               ref={fileInputRef}
               type="file"
-              accept="image/*"
+              accept=".jpg,.jpeg,.png,.gif"
               onChange={handleFileSelect}
               className="file-input-hidden"
               aria-label="Upload avatar image"
