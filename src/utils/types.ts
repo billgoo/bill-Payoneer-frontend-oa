@@ -24,4 +24,4 @@ export interface StepProps {
   title: string;
   description: string;
   errors: { [key: string]: string };
-}
+};

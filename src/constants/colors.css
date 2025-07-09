@@ -1,0 +1,33 @@
+/**
+ * CSS Custom Properties - Color Variables
+ * Generated from colors.ts constants to ensure consistency
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #0078d4;
+
+  /* Success Colors */
+  --color-success: #107c10;
+
+  /* Error/Danger Colors */
+  --color-error: #d13438;
+
+  /* Background Colors */
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f8f9fa;
+  --color-background-tertiary: #f3f2f1;
+
+  /* Text Colors */
+  --color-text-header-primary: #ffffff;
+  --color-text-primary: #323130;
+  --color-text-secondary: #605e5c;
+  --color-text-tertiary: #666666;
+
+  /* Border Colors */
+  --color-border-default: #e1e1e1;
+  --color-border-hover: #0078d4;
+
+  /* Shadow Colors */
+  --color-shadow-default: rgba(0, 0, 0, 0.1);
+}

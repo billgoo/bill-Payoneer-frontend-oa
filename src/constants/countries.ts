@@ -21,15 +21,19 @@ export const COUNTRIES: CountryOption[] = countryList
   .sort((a, b) => a.text.localeCompare(b.text)); // Sort alphabetically by name
 
 // Helper function to validate if a country is valid
-export const isValidCountry = (name: string): boolean => {
-  return COUNTRIES.some(c => c.text === name);
+export const isValidCountry = (key: string): boolean => {
+  return COUNTRIES.some(c => c.key === key);
 };
 
 // Helper function to search countries by name
 export const searchCountries = (searchTerm: string): CountryOption[] => {
-  const term = searchTerm.toLowerCase();
+  if (!searchTerm || !searchTerm.trim()) {
+    return COUNTRIES;
+  }
+  
+  const term = searchTerm.toLowerCase().trim();
   return COUNTRIES.filter(country =>
     country.text.toLowerCase().includes(term) ||
-    country.key.includes(term)
+    country.key.toLowerCase().includes(term)
   );
 };
