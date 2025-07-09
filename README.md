@@ -1,48 +1,99 @@
-# bill-Payoneer-frontend-oa
+# Multi-Step Registration Form
 
-# Getting Started with Create React App
+A sophisticated, user-friendly multi-step registration form built with React, TypeScript, and Microsoft Fluent UI. This project demonstrates modern frontend development practices with a focus on user experience, accessibility, and code quality.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📋 Project Overview
 
-## Available Scripts
+This application features a comprehensive 4-step registration process that guides users through account creation with real-time validation, intuitive navigation, and a polished interface.
 
-In the project directory, you can run:
+### ✨ Key Features
 
-### `npm start`
+**🔄 Multi-Step Process:**
+- **Step 1: Basic Information** - First name, last name, and date of birth
+- **Step 2: Additional Details** - Country selection, gender, and optional avatar upload
+- **Step 3: Account Information** - Email address and secure password
+- **Step 4: Confirmation** - Review and submit registration details
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**🎯 Advanced Functionality:**
+- **Smart Navigation**: Step-by-step progression with validation gates
+- **Interactive Step Indicator**: Visual progress tracking with clickable navigation on confirmation
+- **Real-time Validation**: Instant feedback with detailed error messages
+- **File Upload**: Avatar image upload with validation (file type and size)
+- **Country Search**: Searchable dropdown with comprehensive country list
+- **Form Persistence**: Data retained when navigating between steps
+- **Success Feedback**: Confirmation page with option to register another account
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🚀 Setup and Installation
 
-### `npm test`
+### Prerequisites
+- Node.js (version 16 or higher)
+- npm package manager
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Getting Started
 
-### `npm run build`
+1. **Clone and navigate to the project:**
+   ```bash
+   cd bill-Payoneer-frontend-oa
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Open your browser:**
+   Visit [http://localhost:3000](http://localhost:3000) to view the application
 
-### `npm run eject`
+5. **Run tests (optional):**
+   ```bash
+   npm test
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+6. **Build for production (optional):**
+   ```bash
+   npm run build
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Project Structure
+```
+src/
+├── components/
+│   └── RegistrationForm/           # Main form component
+│       ├── RegistrationForm.tsx    # Container component
+│       ├── RegistrationForm.css    # Styling
+│       └── steps/                  # Individual step components
+│           ├── BasicInfoStep.tsx   # Step 1: Basic info
+│           ├── DetailsStep.tsx     # Step 2: Additional details
+│           ├── AccountStep.tsx     # Step 3: Account creation
+│           └── ConfirmationStep.tsx # Step 4: Review & submit
+├── utils/
+│   ├── types.ts                    # TypeScript interfaces
+│   ├── validationSchemas.ts        # Yup validation rules
+│   └── fileUtils.ts               # File upload utilities
+├── constants/
+│   ├── countries.ts               # Country data and utilities
+│   └── gender.ts                  # Gender options
+└── apis/
+    └── mockApi.ts                 # Simulated API calls
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📷 Step-by-Step Screenshots
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Step 1: Basic Information
+![Basic Information](resources/basicInfo.png)
 
-## Learn More
+### Step 2: Additional Details
+![Additional Details](resources/details.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Step 3: Account Information
+![Account Information](resources/account.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Step 4: Confirmation
+![Confirmation](resources/confirm.png)
+
+**Note:** When on the confirmation page, you can jump to past pages by clicking the step icon in the top bar.
